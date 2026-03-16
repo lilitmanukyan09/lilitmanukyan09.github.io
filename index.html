@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lilit Manukyan — Data Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Instrument+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0F1C2E;
+  --navy-mid: #1A2D42;
+  --navy-light: #243650;
+  --navy-border: #2E4460;
+  --ivory: #F5F0E8;
+  --ivory-dark: #EDE6D8;
+  --ivory-mid: #C8BFA8;
+  --ivory-light: #A89880;
+  --gold: #C9A84C;
+  --gold-light: #E8CC80;
+  --gold-pale: rgba(201,168,76,0.08);
+  --white: #FDFBF7;
+  --text-on-dark: #D4CBBE;
+  --text-dim: #7A8A9A;
+}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Instrument Sans', sans-serif;
+  background: var(--navy);
+  color: var(--text-on-dark);
+  font-size: 14px;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  height: 64px;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 72px;
+  background: rgba(15,28,46,0.92);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--navy-border);
+}
+.nav-mark {
+  font-family: 'DM Serif Display', serif;
+  font-size: 19px;
+  color: var(--ivory);
+  letter-spacing: 0.01em;
+}
+
+.nav-links { display: flex; gap: 4px; list-style: none; }
+.nav-links a {
+  padding: 6px 18px;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  color: var(--text-dim);
+  text-decoration: none;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+.nav-links a:hover { color: var(--ivory); background: var(--navy-light); }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  padding-top: 64px;
+  display: flex; flex-direction: column; justify-content: center;
+  padding-left: 72px; padding-right: 72px;
+  position: relative; overflow: hidden;
+}
+
+/* Subtle radial glow */
+.hero::before {
+  content: '';
+  position: absolute;
+  width: 800px; height: 800px;
+  background: radial-gradient(circle, rgba(201,168,76,0.06) 0%, transparent 70%);
+  top: 50%; left: 50%;
+  transform: translate(-30%, -50%);
+  pointer-events: none;
+}
+/* Fine grid texture */
+.hero::after {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+}
+
+.hero-inner { position: relative; z-index: 1; max-width: 900px; }
+
+.hero-label {
+  display: flex; align-items: center; gap: 16px;
+  margin-bottom: 52px;
+}
+.hero-label-line { width: 40px; height: 1px; background: var(--gold); }
+.hero-label-text {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(64px, 8.5vw, 120px);
+  font-weight: 400;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  color: var(--ivory);
+  margin-bottom: 48px;
+}
+h1 em {
+  font-style: italic;
+  color: var(--gold-light);
+}
+
+.hero-desc {
+  font-size: 17px;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--ivory-mid);
+  max-width: 500px;
+  line-height: 1.8;
+  margin-bottom: 56px;
+  border-left: 2px solid var(--gold);
+  padding-left: 24px;
+}
+
+.hero-bottom {
+  display: flex; align-items: center; gap: 48px;
+}
+.btn-dusk {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 14px 32px;
+  font-family: 'Instrument Sans', sans-serif;
+  font-size: 12px; font-weight: 500;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+.btn-dusk-gold {
+  background: var(--gold);
+  color: var(--navy);
+  clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+}
+.btn-dusk-gold:hover { background: var(--gold-light); }
+.btn-dusk-ghost {
+  background: transparent;
+  color: var(--ivory-mid);
+  border: 1px solid var(--navy-border);
+}
+.btn-dusk-ghost:hover { border-color: var(--gold); color: var(--gold); }
+
+.hero-meta-strip {
+  display: flex; gap: 40px;
+  padding-left: 48px;
+  border-left: 1px solid var(--navy-border);
+}
+.hero-meta-item {}
+.hero-meta-l {
+  font-size: 9px; font-weight: 500;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--text-dim); margin-bottom: 3px;
+}
+.hero-meta-v {
+  font-size: 13px; font-weight: 400;
+  color: var(--ivory-mid);
+}
+.hero-meta-v a {
+  color: var(--gold);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.hero-meta-v a:hover { color: var(--gold-light); }
+
+/* ── SECTIONS ── */
+.sec-dark { background: var(--navy); padding: 120px 72px; }
+.sec-mid { background: var(--navy-mid); padding: 120px 72px; }
+.sec-light { background: var(--ivory); padding: 120px 72px; color: var(--navy); }
+.sec-light .eyebrow-text { color: var(--gold); }
+.sec-light .eyebrow-line { background: var(--gold); }
+.sec-light h2 { color: var(--navy); }
+.sec-light h2 em { color: var(--gold); }
+.sec-light .intro-text { color: #556; }
+.sec-light .exp-item { border-color: var(--ivory-dark); }
+.sec-light .exp-role { color: var(--navy); }
+.sec-light .exp-role em { color: var(--navy); }
+.sec-light .exp-co { color: #667; }
+.sec-light .exp-period { color: #99A; }
+.sec-light .skill-block { background: var(--white); border-color: var(--ivory-dark); }
+.sec-light .skill-block:hover { border-color: var(--gold); }
+.sec-light .skill-block-name { color: var(--navy); border-color: var(--ivory-dark); }
+.sec-light .stag { background: var(--ivory-dark); border-color: var(--ivory-dark); color: #556; }
+.sec-light .stag.hi { background: var(--navy); border-color: var(--navy); color: var(--ivory); }
+.sec-light .proj-card { background: var(--white); border-color: var(--ivory-dark); }
+.sec-light .proj-card:hover { border-color: var(--gold); }
+.sec-light .proj-cat { color: var(--gold); }
+.sec-light .proj-title { color: var(--navy); }
+.sec-light .proj-desc { color: #667; }
+.sec-light .proj-footer { border-color: var(--ivory-dark); background: var(--ivory); }
+.sec-light .proj-tech { color: #99A; }
+.sec-light .proj-link { color: var(--navy); border-color: var(--ivory-dark); }
+.sec-light .proj-link:hover { background: var(--navy); color: var(--gold); border-color: var(--navy); }
+.sec-light .cert-card { background: var(--white); border-color: var(--ivory-dark); }
+.sec-light .cert-card:hover { border-color: var(--gold); }
+.sec-light .cert-n { color: var(--navy); }
+.sec-light .cert-card:hover .cert-n { color: var(--ivory); }
+.sec-light .cert-card:hover .cert-o { color: var(--ivory-mid); }
+.sec-light .cert-card:hover .cert-arr { color: var(--gold); opacity: 1; }
+.sec-light .cert-o { color: #99A; }
+.sec-light .edu-card { background: var(--white); border-color: var(--ivory-dark); }
+.sec-light .edu-deg { color: var(--navy); }
+.sec-light .edu-school { color: #667; }
+.sec-light .edu-yr { color: #99A; }
+.sec-light .edu-card:hover .edu-deg { color: var(--ivory); }
+.sec-light .edu-card:hover .edu-school { color: var(--ivory-mid); }
+.sec-light .edu-card:hover .edu-yr { color: var(--text-dim); }
+.sec-light .edu-card:hover .edu-level { color: var(--gold); }
+
+.eyebrow {
+  display: flex; align-items: center; gap: 14px;
+  margin-bottom: 24px;
+}
+.eyebrow-line { width: 28px; height: 1px; background: var(--gold); }
+.eyebrow-text {
+  font-size: 10px; font-weight: 500;
+  letter-spacing: 0.24em; text-transform: uppercase;
+  color: var(--gold);
+}
+h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(36px, 4vw, 56px);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--ivory);
+  margin-bottom: 16px;
+}
+h2 em { font-style: italic; color: var(--gold-light); }
+.intro-text {
+  font-size: 15px; font-weight: 300;
+  color: var(--text-dim); max-width: 540px;
+  margin-bottom: 64px; line-height: 1.85;
+}
+
+/* ── ABOUT ── */
+.about-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 100px; align-items: start; }
+.about-p { font-size: 15px; font-weight: 300; color: #3A4050; line-height: 1.9; margin-bottom: 22px; }
+.about-p strong { color: var(--navy); font-weight: 600; }
+
+.info-panel {
+  background: var(--white);
+  border: 1px solid var(--border, #DDD);
+  padding: 32px;
+}
+.info-panel-title {
+  font-size: 10px; font-weight: 500;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--ivory-dark);
+}
+.lang-chips { display: flex; flex-wrap: wrap; gap: 10px; }
+.lang-chip {
+  padding: 6px 16px;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  border: 1px solid var(--border, #DDD);
+  color: var(--navy);
+  background: var(--ivory-dark);
+  border-radius: 100px;
+  transition: all 0.2s;
+}
+.lang-chip.native { border-color: var(--gold); color: var(--navy); background: var(--gold); font-weight: 500; }
+
+/* ── EXPERIENCE ── */
+.exp-table { width: 100%; border-collapse: collapse; }
+.exp-item {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  padding: 32px 0;
+  border-bottom: 1px solid var(--navy-border);
+  gap: 40px;
+}
+.exp-item:first-child { border-top: 1px solid var(--navy-border); }
+.exp-role {
+  font-family: 'DM Serif Display', serif;
+  font-size: 28px; font-weight: 400;
+  color: var(--ivory); margin-bottom: 6px;
+  line-height: 1.1;
+}
+.exp-role em { font-style: italic; color: var(--ivory); }
+.exp-co {
+  font-size: 13px; font-weight: 400;
+  color: var(--text-dim);
+  letter-spacing: 0.04em;
+}
+.exp-right { text-align: right; }
+.exp-period { font-size: 13px; color: var(--text-dim); white-space: nowrap; font-weight: 300; }
+.exp-now {
+  display: inline-block; margin-top: 6px;
+  padding: 3px 12px; font-size: 10px; font-weight: 500;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  background: var(--gold-pale);
+  border: 1px solid rgba(201,168,76,0.3);
+  color: var(--gold);
+}
+
+/* ── SKILLS ── */
+.skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--navy-border); }
+.skill-block {
+  background: var(--navy-mid);
+  padding: 32px 28px;
+  transition: background 0.25s;
+}
+.skill-block:hover { background: var(--navy-light); }
+  .skill-block:hover .skill-block-name { color: var(--gold); border-color: var(--navy-border); }
+  .skill-block:hover .stag { color: var(--text-dim); border-color: var(--navy-border); }
+  .skill-block:hover .stag.hi { background: var(--gold-pale); border-color: rgba(201,168,76,0.3); color: var(--gold); }
+.skill-block-name {
+  font-size: 10px; font-weight: 500;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 18px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--navy-border);
+}
+.stag {
+  display: inline-block;
+  font-size: 11px; font-weight: 400;
+  padding: 4px 11px; margin: 3px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--navy-border);
+  color: var(--text-dim);
+  transition: all 0.2s;
+}
+.stag.hi {
+  background: var(--gold-pale);
+  border-color: rgba(201,168,76,0.3);
+  color: var(--gold);
+}
+.stag:hover { border-color: var(--gold); color: var(--gold-light); }
+
+/* ── PROJECTS ── */
+.proj-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.proj-card {
+  background: var(--white);
+  border: 1px solid var(--ivory-dark);
+  display: flex; flex-direction: column;
+  transition: all 0.25s ease;
+}
+.proj-card:hover { box-shadow: 0 12px 40px rgba(201,168,76,0.12); transform: translateY(-3px); border-color: var(--gold); }
+.proj-top-bar {
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold), var(--gold-light));
+}
+.proj-body { padding: 28px 24px; flex: 1; }
+.proj-cat {
+  font-size: 10px; font-weight: 500;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 12px;
+}
+.proj-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 20px; font-weight: 400;
+  color: var(--navy); margin-bottom: 10px; line-height: 1.3;
+}
+.proj-desc { font-size: 13px; font-weight: 300; color: #667; line-height: 1.7; }
+.proj-footer {
+  padding: 14px 24px;
+  border-top: 1px solid var(--ivory-dark);
+  display: flex; align-items: center; justify-content: space-between;
+  background: var(--ivory);
+}
+.proj-tech { font-size: 11px; color: #99A; }
+.proj-link {
+  font-size: 12px; font-weight: 500;
+  color: var(--navy); text-decoration: none;
+  display: flex; align-items: center; gap: 6px;
+  transition: gap 0.2s, color 0.2s;
+}
+.proj-link:hover { color: var(--gold); gap: 10px; }
+
+/* ── CERTS ── */
+.certs-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 40px; }
+.cert-card {
+  display: flex; align-items: center; gap: 16px;
+  padding: 20px 22px;
+  background: var(--navy-light);
+  border: 1px solid var(--navy-border);
+  text-decoration: none; color: inherit;
+  transition: all 0.2s;
+}
+.cert-card:hover { border-color: var(--gold); background: var(--navy-mid); }
+.cert-logo {
+  width: 44px; height: 44px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; border: 1px solid var(--navy-border);
+}
+.cert-n { font-size: 13px; font-weight: 500; color: var(--ivory); margin-bottom: 3px; }
+.cert-o { font-size: 11px; color: var(--text-dim); font-weight: 300; }
+.cert-arr { margin-left: auto; color: var(--gold); opacity: 0.4; font-size: 16px; }
+.cert-card:hover .cert-arr { opacity: 1; }
+
+.edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.edu-card {
+  padding: 32px;
+  background: var(--navy-light);
+  border: 1px solid var(--navy-border);
+  border-top: 2px solid var(--gold);
+  transition: background 0.2s;
+}
+.edu-card:hover { background: var(--navy-mid); }
+.edu-level {
+  font-size: 10px; font-weight: 500;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 12px;
+}
+.edu-deg {
+  font-family: 'DM Serif Display', serif;
+  font-size: 22px; font-weight: 400;
+  color: var(--ivory); margin-bottom: 8px; line-height: 1.3;
+}
+.edu-school { font-size: 13px; color: var(--text-dim); margin-bottom: 4px; }
+.edu-yr { font-size: 12px; font-weight: 300; color: var(--navy-border); }
+
+/* ── CONTACT ── */
+.contact-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 100px; align-items: center; }
+.contact-big {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(52px, 6.5vw, 88px);
+  font-weight: 400; line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--ivory);
+}
+.contact-big em { font-style: italic; color: var(--gold-light); }
+.contact-sub {
+  font-size: 15px; font-weight: 300;
+  color: var(--text-dim); line-height: 1.85;
+  margin-bottom: 40px;
+}
+.c-btns { display: flex; flex-direction: column; gap: 10px; }
+.c-btn {
+  display: flex; align-items: center; gap: 14px;
+  padding: 16px 24px;
+  font-family: 'Instrument Sans', sans-serif;
+  font-size: 13px; font-weight: 500;
+  text-decoration: none;
+  border: 1px solid var(--navy-border);
+  color: var(--ivory-mid);
+  transition: all 0.2s;
+  position: relative; overflow: hidden;
+}
+.c-btn::before {
+  content: '';
+  position: absolute; left: 0; top: 0; bottom: 0; width: 2px;
+  background: var(--gold);
+  transform: scaleY(0);
+  transition: transform 0.2s ease;
+}
+.c-btn:hover { border-color: var(--navy-light); color: var(--gold); background: var(--navy-light); }
+.c-btn:hover::before { transform: scaleY(1); }
+.c-btn svg { width: 18px; height: 18px; opacity: 0.6; }
+.c-btn:hover svg { opacity: 1; }
+.c-btn-label { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; }
+.c-btn-detail { margin-left: auto; font-size: 11px; font-weight: 300; color: var(--text-dim); }
+
+/* ── DIVIDER ── */
+.gold-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  opacity: 0.3;
+  margin: 0;
+}
+
+/* ── REVEAL ── */
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.reveal.in { opacity: 1; transform: none; }
+.rd1 { transition-delay: 0.1s; } .rd2 { transition-delay: 0.2s; } .rd3 { transition-delay: 0.3s; }
+
+@media (max-width: 900px) {
+  nav { padding: 0 24px; }
+  .nav-links { display: none; }
+  .sec-dark, .sec-mid, .sec-light { padding: 80px 24px; }
+  .hero { padding: 80px 24px 60px; }
+  h1 { font-size: 60px; }
+  .hero-bottom { flex-direction: column; align-items: flex-start; gap: 24px; }
+  .hero-meta-strip { padding-left: 0; border-left: none; border-top: 1px solid var(--navy-border); padding-top: 24px; flex-wrap: wrap; }
+  .about-grid { grid-template-columns: 1fr; gap: 48px; }
+  .exp-item { grid-template-columns: 1fr; gap: 4px; }
+  .exp-right { text-align: left; }
+  .skills-grid { grid-template-columns: 1fr 1fr; }
+  .proj-grid { grid-template-columns: 1fr; }
+  .certs-grid { grid-template-columns: 1fr; }
+  .edu-grid { grid-template-columns: 1fr; }
+  .contact-layout { grid-template-columns: 1fr; gap: 48px; }
+}
+
+  /* ── INDUSTRIES ── */
+  .industries-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+  }
+  .industry-card {
+    padding: 28px 20px;
+    background: var(--white);
+    border: 1px solid var(--ivory-dark);
+    text-align: center;
+    transition: all 0.25s ease;
+    border-top: 2px solid transparent;
+  }
+  .industry-card:hover {
+    border-top-color: var(--gold);
+    box-shadow: 0 8px 28px rgba(201,168,76,0.1);
+    transform: translateY(-3px);
+  }
+  .industry-icon { font-size: 28px; margin-bottom: 14px; }
+  .industry-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 16px; font-weight: 400;
+    color: var(--navy); margin-bottom: 6px;
+    line-height: 1.2;
+  }
+  .industry-detail {
+    font-size: 11px; font-weight: 300;
+    color: var(--ivory-light);
+    line-height: 1.5;
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-mark">Lilit Manukyan</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#certifications">Certifications</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero sec-dark" id="home">
+  <div class="hero-inner">
+    <div class="hero-label reveal">
+      <div class="hero-label-line"></div>
+      <span class="hero-label-text">Data Engineer · Analytics Engineer</span>
+    </div>
+    <h1 class="reveal rd1">
+      Lilit<br>
+      Manukyan
+    </h1>
+    <p class="hero-desc reveal rd2">
+      Turning complex datasets into trusted pipelines and actionable insights — at the intersection of engineering and analytics.
+    </p>
+    <div class="hero-bottom reveal rd3">
+      <a href="#experience" class="btn-dusk btn-dusk-gold">View Experience</a>
+      <a href="#contact" class="btn-dusk btn-dusk-ghost">Get in Touch</a>
+      <div class="hero-meta-strip">
+        <div class="hero-meta-item">
+          <div class="hero-meta-l">Current</div>
+          <div class="hero-meta-v">Philip Morris International</div>
+        </div>
+        <div class="hero-meta-item">
+          <div class="hero-meta-l">Stack</div>
+          <div class="hero-meta-v">Snowflake · Matillion · dbt · Power BI</div>
+        </div>
+        <div class="hero-meta-item">
+          <div class="hero-meta-l">Links</div>
+          <div class="hero-meta-v">
+<a href="https://www.linkedin.com/in/lilit-manukyan/" target="_blank">LinkedIn</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="gold-divider"></div>
+
+<!-- ABOUT -->
+<section class="sec-light" id="about">
+  <div class="eyebrow reveal"><div class="eyebrow-line"></div><span class="eyebrow-text">Who I am</span></div>
+  <h2 class="reveal">Where data <em>engineering</em><br>meets analytical thinking</h2>
+  <div class="about-grid" style="margin-top:56px;">
+    <div>
+      <p class="about-p reveal">I'm a <strong>Data Engineer & Analytics Engineer</strong> with extensive experience across data engineering, analytics, and business intelligence. At Philip Morris International, I design scalable ETL/ELT pipelines, build trusted data assets in Snowflake, and automate workflows that power strategic decision-making.</p>
+      <p class="about-p reveal">My background is unique: I bring both a <strong>deep engineering mindset</strong> — pipeline architecture, data quality frameworks, workflow automation — and a strong <strong>analytical lens</strong> from years of building BI dashboards and translating business requirements into data solutions.</p>
+    </div>
+    <div class="reveal">
+      <div class="info-panel">
+        <div class="info-panel-title">Languages</div>
+        <div class="lang-chips">
+          <span class="lang-chip native">English — Full Proficiency</span>
+          <span class="lang-chip">Russian — Working</span>
+          <span class="lang-chip">French — Working</span>
+          <span class="lang-chip">Armenian — Native</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="gold-divider"></div>
+
+<!-- EXPERIENCE -->
+<section class="sec-dark" id="experience">
+  <div class="eyebrow reveal"><div class="eyebrow-line"></div><span class="eyebrow-text">Career</span></div>
+  <h2 class="reveal">Work <em>Experience</em></h2>
+  <p class="intro-text reveal">A track record across data engineering, analytics, and financial analysis.</p>
+  <div>
+    <div class="exp-item reveal">
+      <div>
+        <div class="exp-role"><em>Data</em> Engineer</div>
+        <div class="exp-co">Philip Morris International</div>
+      </div>
+      <div class="exp-right">
+        <div class="exp-period">Aug 2023 — Present</div>
+        <div><span class="exp-now">Current</span></div>
+      </div>
+    </div>
+    <div class="exp-item reveal">
+      <div>
+        <div class="exp-role">Data <em>Analyst</em></div>
+        <div class="exp-co">Philip Morris International</div>
+      </div>
+      <div class="exp-right">
+        <div class="exp-period">Jan 2022 — Aug 2023</div>
+      </div>
+    </div>
+    <div class="exp-item reveal">
+      <div>
+        <div class="exp-role">Customer <em>Analytics</em> Specialist</div>
+        <div class="exp-co">Digitain</div>
+      </div>
+      <div class="exp-right">
+        <div class="exp-period">Jan 2021 — Jan 2022</div>
+      </div>
+    </div>
+    <div class="exp-item reveal">
+      <div>
+        <div class="exp-role">Freelance <em>Data Analyst</em></div>
+        <div class="exp-co">Upwork</div>
+      </div>
+      <div class="exp-right">
+        <div class="exp-period">Sep 2017 — Jan 2022</div>
+        <span class="exp-now" style="font-size:9px;">Freelance</span>
+      </div>
+    </div>
+    <div class="exp-item reveal">
+      <div>
+        <div class="exp-role">Bounty &amp; Community <em>Manager</em></div>
+        <div class="exp-co">AmaZix — Crypto &amp; FinTech</div>
+      </div>
+      <div class="exp-right">
+        <div class="exp-period">Nov 2017 — Dec 2018</div>
+      </div>
+    </div>
+    <div class="exp-item reveal">
+      <div>
+        <div class="exp-role"><em>Investment</em> Analyst</div>
+        <div class="exp-co">Converse Bank</div>
+      </div>
+      <div class="exp-right">
+        <div class="exp-period">Oct 2018 — Oct 2020</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="gold-divider"></div>
+
+<!-- SKILLS -->
+<section class="sec-light" id="skills">
+  <div class="eyebrow reveal"><div class="eyebrow-line"></div><span class="eyebrow-text">Technical Expertise</span></div>
+  <h2 class="reveal">Skills &amp; <em>Tools</em></h2>
+  <p class="intro-text reveal">A full-stack data toolkit — from pipeline engineering to executive reporting.</p>
+  <div class="skills-grid">
+    <div class="skill-block reveal">
+      <div class="skill-block-name">Pipeline & ETL</div>
+      <div>
+        <span class="stag hi">Matillion</span><span class="stag hi">dbt</span>
+        <span class="stag">Power Automate</span><span class="stag">ETL/ELT Design</span>
+      </div>
+    </div>
+    <div class="skill-block reveal">
+      <div class="skill-block-name">Data Warehouse</div>
+      <div>
+        <span class="stag hi">Snowflake</span><span class="stag">SnowPro Certified</span>
+        <span class="stag">Data Modeling</span><span class="stag">Data Quality</span>
+      </div>
+    </div>
+    <div class="skill-block reveal">
+      <div class="skill-block-name">Programming</div>
+      <div>
+        <span class="stag hi">SQL (Advanced)</span><span class="stag hi">Python</span>
+        <span class="stag">Pandas</span><span class="stag">NumPy</span><span class="stag">Web Scraping</span>
+      </div>
+    </div>
+    <div class="skill-block reveal">
+      <div class="skill-block-name">Cloud & DevOps</div>
+      <div>
+        <span class="stag hi">AWS</span><span class="stag">Cloud Practitioner</span>
+        <span class="stag">Git / GitHub</span><span class="stag">Version Control</span>
+      </div>
+    </div>
+    <div class="skill-block reveal">
+      <div class="skill-block-name">BI & Visualization</div>
+      <div>
+        <span class="stag hi">Power BI</span><span class="stag hi">Excel</span>
+        <span class="stag">DAX</span><span class="stag">Data Modeling</span><span class="stag">Executive Reporting</span>
+      </div>
+    </div>
+    <div class="skill-block reveal">
+      <div class="skill-block-name">Analytics & ML</div>
+      <div>
+        <span class="stag">Segmentation</span><span class="stag">Anomaly Detection</span>
+        <span class="stag">Classification</span><span class="stag">Regression</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="gold-divider"></div>
+
+<!-- PROJECTS — light section -->
+<section class="sec-light" id="projects">
+  <div class="eyebrow reveal"><div class="eyebrow-line"></div><span class="eyebrow-text">Portfolio</span></div>
+  <h2 class="reveal">Featured <em>Projects</em></h2>
+  <p class="intro-text reveal">Hands-on work spanning BI dashboards, data engineering, Python and machine learning.</p>
+  <div class="proj-grid">
+    <div class="proj-card reveal">
+      <div class="proj-top-bar"></div>
+      <div class="proj-body">
+        <div class="proj-cat">Power BI · Business Intelligence</div>
+        <div class="proj-title">Sales Analytics Dashboard</div>
+        <div class="proj-desc">Interactive dashboard with bookmarks, custom visuals, and a hidden filter pane. Includes title and problem statement pages.</div>
+      </div>
+      <div class="proj-footer">
+        <span class="proj-tech">Power BI · DAX · Data Modeling</span>
+        <a href="https://app.powerbi.com/view?r=eyJrIjoiZTEzZjViNDktODIwNS00MWExLWI4ZWEtNjY5Yzk0YzBkZmY0IiwidCI6IjE4MWE1MzExLWVmOWUtNGVjNi1hMmM0LTRhODQzNjhjYmFjYiIsImMiOjEwfQ%3D%3D" target="_blank" class="proj-link">View →</a>
+      </div>
+    </div>
+    <div class="proj-card reveal">
+      <div class="proj-top-bar"></div>
+      <div class="proj-body">
+        <div class="proj-cat">Power BI · Financial Analytics</div>
+        <div class="proj-title">Cryptocurrency Analytics Dashboard</div>
+        <div class="proj-desc">Advanced DAX showcasing crypto price changes across time periods with complex time-intelligence calculations.</div>
+      </div>
+      <div class="proj-footer">
+        <span class="proj-tech">Power BI · Advanced DAX</span>
+        <a href="https://app.powerbi.com/view?r=eyJrIjoiMTYwYzAzNGMtMWM0My00MTBjLTlkZjItNTU0N2JiN2VjMTBlIiwidCI6IjE4MWE1MzExLWVmOWUtNGVjNi1hMmM0LTRhODQzNjhjYmFjYiIsImMiOjEwfQ%3D%3D" target="_blank" class="proj-link">View →</a>
+      </div>
+    </div>
+    <div class="proj-card reveal">
+      <div class="proj-top-bar"></div>
+      <div class="proj-body">
+        <div class="proj-cat">Data Engineering · Python</div>
+        <div class="proj-title">Rental Data Warehouse</div>
+        <div class="proj-desc">End-to-end: web scraping a rental site, warehouse schema design, and analytical queries for business insights.</div>
+      </div>
+      <div class="proj-footer">
+        <span class="proj-tech">Python · SQL · Selenium</span>
+        <a href="https://github.com/lilitmanukyan09/aca_rental_warehouse" target="_blank" class="proj-link">View →</a>
+      </div>
+    </div>
+    <div class="proj-card reveal">
+      <div class="proj-top-bar"></div>
+      <div class="proj-body">
+        <div class="proj-cat">Python · Web Scraping</div>
+        <div class="proj-title">Walmart Store Locator Scraper</div>
+        <div class="proj-desc">Extracting Walmart store addresses across Canada using Selenium and Requests for geographic analysis.</div>
+      </div>
+      <div class="proj-footer">
+        <span class="proj-tech">Python · Selenium · Requests</span>
+        <a href="https://github.com/lilitmanukyan09/Web_scraping/blob/main/Walmart_scraping.py" target="_blank" class="proj-link">View →</a>
+      </div>
+    </div>
+    <div class="proj-card reveal">
+      <div class="proj-top-bar"></div>
+      <div class="proj-body">
+        <div class="proj-cat">Machine Learning · Python</div>
+        <div class="proj-title">Parkinson's Disease Prediction</div>
+        <div class="proj-desc">KNN, Decision Tree, Logistic Regression and Random Forest compared — Random Forest achieved the highest ROC-AUC, Accuracy and F1.</div>
+      </div>
+      <div class="proj-footer">
+        <span class="proj-tech">Python · Scikit-learn · Random Forest</span>
+        <a href="https://github.com/lilitmanukyan09/Parkinsons-prediction/tree/new/Parkinson_project" target="_blank" class="proj-link">View →</a>
+      </div>
+    </div>
+    <div class="proj-card reveal">
+      <div class="proj-top-bar"></div>
+      <div class="proj-body">
+        <div class="proj-cat">SQL · Data Analysis</div>
+        <div class="proj-title">SQL Analytics & Schema Design</div>
+        <div class="proj-desc">Warehouse design patterns and advanced analytical queries as part of the rental data warehouse project.</div>
+      </div>
+      <div class="proj-footer">
+        <span class="proj-tech">SQL · Schema Design</span>
+        <a href="https://github.com/lilitmanukyan09/aca_rental_warehouse/blob/main/analytical_queries.sql" target="_blank" class="proj-link">View →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="gold-divider"></div>
+
+<!-- CERTIFICATIONS -->
+<section class="sec-light" id="certifications">
+  <div class="eyebrow reveal"><div class="eyebrow-line"></div><span class="eyebrow-text">Credentials</span></div>
+  <h2 class="reveal">Certifications &amp; <em>Education</em></h2>
+  <p class="intro-text reveal">Industry certifications backed by strong academic foundations.</p>
+  <div class="certs-grid">
+    <a href="https://achieve.snowflake.com/aee36f5b-34ca-42da-b7f6-54fdeeaeed25" target="_blank" class="cert-card reveal">
+      <div class="cert-logo"><svg viewBox="0 0 32 32" style="width:22px;height:22px;"><path d="M16 4v24M16 4l-4 4M16 4l4 4M16 28l-4-4M16 28l4-4M4.8 10l22.4 12M4.8 10l5 1M4.8 10l1 5M27.2 22l-5-1M27.2 22l-1-5M4.8 22l22.4-12M4.8 22l1-5M4.8 22l5-1M27.2 10l-1 5M27.2 10l-5 1" stroke="#29B5E8" stroke-width="2" stroke-linecap="round"/></svg></div>
+      <div><div class="cert-n">SnowPro Core Certification</div><div class="cert-o">Snowflake — April 2024</div></div>
+      <div class="cert-arr">→</div>
+    </a>
+    <a href="https://www.credly.com/badges/5251e095-91a7-4ab6-97c8-dc041b715de8/linked_in" target="_blank" class="cert-card reveal">
+      <div class="cert-logo" style="background:#232F3E;border:none;"><svg viewBox="0 0 48 24" style="width:36px;height:18px;"><text x="2" y="18" font-family="Arial Black,sans-serif" font-weight="900" font-size="16" fill="#FF9900">AWS</text></svg></div>
+      <div><div class="cert-n">AWS Cloud Practitioner</div><div class="cert-o">Amazon Web Services — August 2024</div></div>
+      <div class="cert-arr">→</div>
+    </a>
+    <a href="https://www.credly.com/badges/057d939d-9281-440b-a14f-b7e516f6867e" target="_blank" class="cert-card reveal">
+      <div class="cert-logo"><svg viewBox="0 0 21 21" style="width:22px;height:22px;"><rect x="1" y="1" width="9" height="9" fill="#F25022"/><rect x="11" y="1" width="9" height="9" fill="#7FBA00"/><rect x="1" y="11" width="9" height="9" fill="#00A4EF"/><rect x="11" y="11" width="9" height="9" fill="#FFB900"/></svg></div>
+      <div><div class="cert-n">Power BI Data Analyst Associate</div><div class="cert-o">Microsoft — April 2022</div></div>
+      <div class="cert-arr">→</div>
+    </a>
+    <a href="https://www.datacamp.com/statement-of-accomplishment/track/e3849e6a379f4954626199c94c8e43104d5a43c9" target="_blank" class="cert-card reveal">
+      <div class="cert-logo" style="background:#03EF62;border:none;"><svg viewBox="0 0 32 32" style="width:20px;height:20px;"><path d="M10 6l14 10-14 10V6z" fill="#05192D"/><rect x="7" y="23" width="6" height="3" rx="1.5" fill="#05192D"/></svg></div>
+      <div><div class="cert-n">Data Scientist with Python</div><div class="cert-o">DataCamp — April 2021</div></div>
+      <div class="cert-arr">→</div>
+    </a>
+    <a href="https://www.credential.net/70821667-ee1d-455d-9a76-e4315218c737" target="_blank" class="cert-card reveal">
+      <div class="cert-logo" style="background:#1B3A6B;border:none;"><svg viewBox="0 0 32 24" style="width:28px;height:20px;"><text x="3" y="17" font-family="Arial,sans-serif" font-weight="700" font-size="12" fill="white">CFI</text></svg></div>
+      <div><div class="cert-n">Financial Modeling & Valuation Analyst</div><div class="cert-o">Corporate Finance Institute — April 2020</div></div>
+      <div class="cert-arr">→</div>
+    </a>
+    <div class="cert-card reveal" style="cursor:default;">
+      <div class="cert-logo" style="background:#E63946;border:none;"><svg viewBox="0 0 32 24" style="width:28px;height:20px;"><text x="2" y="17" font-family="Arial,sans-serif" font-weight="700" font-size="11" fill="white">ACA</text></svg></div>
+      <div><div class="cert-n">Data Engineering Program</div><div class="cert-o">Armenian Code Academy — January 2022</div></div>
+    </div>
+  </div>
+  <div class="edu-grid">
+    <div class="edu-card reveal">
+      <div class="edu-level">Graduate</div>
+      <div class="edu-deg">MS in Strategic Management</div>
+      <div class="edu-school">American University of Armenia</div>
+      <div class="edu-yr">2017 — 2019</div>
+    </div>
+    <div class="edu-card reveal">
+      <div class="edu-level">Undergraduate</div>
+      <div class="edu-deg">BA in International Economic Relations</div>
+      <div class="edu-school">Armenian State University of Economics</div>
+      <div class="edu-yr">2013 — 2017</div>
+    </div>
+  </div>
+</section>
+
+<div class="gold-divider"></div>
+
+
+<!-- INDUSTRIES -->
+<section class="sec-light" id="industries">
+  <div class="eyebrow reveal"><div class="eyebrow-line"></div><span class="eyebrow-text">Domain Experience</span></div>
+  <h2 class="reveal">Industries &amp; <em>Domains</em></h2>
+  <p class="intro-text reveal">Hands-on experience delivering data solutions across diverse and demanding industries.</p>
+  <div class="industries-grid">
+    <div class="industry-card reveal">
+      <div class="industry-icon">🏦</div>
+      <div class="industry-name">Banking &amp; Finance</div>
+      <div class="industry-detail">Investment analysis, financial modeling, valuation</div>
+    </div>
+    <div class="industry-card reveal">
+      <div class="industry-icon">🏭</div>
+      <div class="industry-name">Manufacturing</div>
+      <div class="industry-detail">ETL pipelines, analytics &amp; R&amp;D data infrastructure — Philip Morris International</div>
+    </div>
+    <div class="industry-card reveal">
+      <div class="industry-icon">₿</div>
+      <div class="industry-name">Crypto &amp; FinTech</div>
+      <div class="industry-detail">Analytics dashboards &amp; community management — AmaZix</div>
+    </div>
+    <div class="industry-card reveal">
+      <div class="industry-icon">🎮</div>
+      <div class="industry-name">Gaming</div>
+      <div class="industry-detail">CRM analytics &amp; behavioral segmentation — Digitain</div>
+    </div>
+    <div class="industry-card reveal">
+      <div class="industry-icon">🔬</div>
+      <div class="industry-name">R&amp;D</div>
+      <div class="industry-detail">Analytical &amp; engineering support for R&amp;D at Philip Morris International</div>
+    </div>
+  </div>
+</section>
+
+<div class="gold-divider"></div>
+<!-- CONTACT -->
+<section class="sec-mid" id="contact">
+  <div class="contact-layout">
+    <div class="contact-big reveal">
+      Let's<br><em>connect.</em>
+    </div>
+    <div>
+      <p class="contact-sub reveal">Always happy to connect with fellow data professionals, discuss interesting problems, or exchange ideas about engineering and analytics. Feel free to reach out.</p>
+      <div class="c-btns">
+        <a href="mailto:lilitmanukyan09@gmail.com" class="c-btn reveal">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          <span class="c-btn-label">Email Me</span>
+          <span class="c-btn-detail">lilitmanukyan09@gmail.com</span>
+        </a>
+        <a href="https://www.linkedin.com/in/lilit-manukyan/" target="_blank" class="c-btn reveal">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+          <span class="c-btn-label">LinkedIn</span>
+          <span class="c-btn-detail">lilit-manukyan</span>
+        </a>
+        <a href="https://github.com/lilitmanukyan09" target="_blank" class="c-btn reveal">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+          <span class="c-btn-label">GitHub</span>
+          <span class="c-btn-detail">lilitmanukyan09</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+}, { threshold: 0.07 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+document.querySelectorAll('.hero .reveal').forEach((el, i) => {
+  setTimeout(() => el.classList.add('in'), 80 + i * 150);
+});
+</script>
+</body>
+</html>
