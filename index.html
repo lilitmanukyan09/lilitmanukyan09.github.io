@@ -3,8 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta property="og:title" content="Lilit Manukyan — Analytics Engineer">
-<meta property="og:description" content="Data integration engineering and analytics portfolio">
-<meta property="og:image" "https://github.com/lilitmanukyan09/lilitmanukyan09.github.io/blob/master/Meta_image.png">
+<meta property="og:description" content="Analytics Engineer specializing in data transformation and pipeline engineering.">
+<meta property="og:image" content="https://raw.githubusercontent.com/lilitmanukyan09/lilitmanukyan09.github.io/master/Meta_image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+<meta property="og:url" content="https://lilitmanukyan09.github.io">
+<meta property="og:type" content="website">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lilit Manukyan — Analytics Engineer</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Instrument+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
@@ -203,15 +207,6 @@ h1 em {
 .sec-light .skill-block-name { color: var(--navy); border-color: var(--ivory-dark); }
 .sec-light .stag { background: var(--ivory-dark); border-color: var(--ivory-dark); color: #556; }
 .sec-light .stag.hi { background: var(--navy); border-color: var(--navy); color: var(--ivory); }
-.sec-light .proj-card { background: var(--white); border-color: var(--ivory-dark); }
-.sec-light .proj-card:hover { border-color: var(--gold); }
-.sec-light .proj-cat { color: var(--gold); }
-.sec-light .proj-title { color: var(--navy); }
-.sec-light .proj-desc { color: #667; }
-.sec-light .proj-footer { border-color: var(--ivory-dark); background: var(--ivory); }
-.sec-light .proj-tech { color: #99A; }
-.sec-light .proj-link { color: var(--navy); border-color: var(--ivory-dark); }
-.sec-light .proj-link:hover { background: var(--navy); color: var(--gold); border-color: var(--navy); }
 .sec-light .cert-card { background: var(--white); border-color: var(--ivory-dark); }
 .sec-light .cert-card:hover { border-color: var(--gold); }
 .sec-light .cert-n { color: var(--navy); }
@@ -258,6 +253,17 @@ h2 em { font-style: italic; color: var(--gold-light); }
 .about-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 100px; align-items: start; }
 .about-p { font-size: 15px; font-weight: 300; color: #3A4050; line-height: 1.9; margin-bottom: 22px; }
 .about-p strong { color: var(--navy); font-weight: 600; }
+.about-lang {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 8px;
+  margin-top: 32px;
+  padding-top: 20px;
+  border-top: 1px solid var(--ivory-dark);
+  font-size: 12px; font-weight: 300;
+  color: #99A;
+  letter-spacing: 0.03em;
+}
+.about-lang strong { color: #556; font-weight: 500; }
+.about-lang-sep { color: var(--ivory-dark); }
 
 .info-panel {
   background: var(--white);
@@ -309,7 +315,23 @@ h2 em { font-style: italic; color: var(--gold-light); }
 }
 .exp-right { text-align: right; }
 .exp-period { font-size: 13px; color: var(--text-dim); white-space: nowrap; font-weight: 300; }
-.exp-now {
+.exp-narrative {
+  font-size: 13px; font-weight: 300;
+  color: #667; line-height: 1.7;
+  max-width: 560px;
+  margin-top: 8px;
+  font-style: italic;
+}
+.sec-light .exp-narrative { color: #667; }
+.exp-item-current {
+  border-left: 2px solid var(--gold);
+  padding-left: 24px;
+  margin-left: -26px;
+}
+.exp-role-current {
+  font-size: 22px;
+}
+.sec-light .exp-item-current { border-color: var(--gold); }
   display: inline-block; margin-top: 6px;
   padding: 3px 12px; font-size: 10px; font-weight: 500;
   letter-spacing: 0.1em; text-transform: uppercase;
@@ -353,44 +375,99 @@ h2 em { font-style: italic; color: var(--gold-light); }
 .stag:hover { border-color: var(--gold); color: var(--gold-light); }
 
 /* ── PROJECTS ── */
-.proj-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-.proj-card {
-  background: var(--white);
-  border: 1px solid var(--ivory-dark);
-  display: flex; flex-direction: column;
-  transition: all 0.25s ease;
+.proj-list { display: flex; flex-direction: column; gap: 0; }
+.proj-item {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 0;
+  border-top: 1px solid var(--navy-border);
+  padding: 56px 0;
+  transition: all 0.2s ease;
+  position: relative;
 }
-.proj-card:hover { box-shadow: 0 12px 40px rgba(201,168,76,0.12); transform: translateY(-3px); border-color: var(--gold); }
-.proj-top-bar {
-  height: 3px;
-  background: linear-gradient(90deg, var(--gold), var(--gold-light));
+.proj-item:last-child { border-bottom: 1px solid var(--navy-border); }
+.proj-item-left { padding-right: 64px; }
+.proj-item-right {
+  padding-left: 48px;
+  border-left: 1px solid var(--navy-border);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
-.proj-body { padding: 28px 24px; flex: 1; }
-.proj-cat {
-  font-size: 10px; font-weight: 500;
-  letter-spacing: 0.2em; text-transform: uppercase;
-  color: var(--gold); margin-bottom: 12px;
+.proj-num {
+  font-family: 'DM Serif Display', serif;
+  font-size: 11px; font-weight: 400;
+  color: var(--text-dim);
+  letter-spacing: 0.15em;
+  margin-bottom: 20px;
 }
 .proj-title {
   font-family: 'DM Serif Display', serif;
-  font-size: 20px; font-weight: 400;
-  color: var(--navy); margin-bottom: 10px; line-height: 1.3;
+  font-size: 32px; font-weight: 400;
+  color: var(--ivory); line-height: 1.15;
+  margin-bottom: 20px;
+  letter-spacing: -0.01em;
 }
-.proj-desc { font-size: 13px; font-weight: 300; color: #667; line-height: 1.7; }
-.proj-footer {
-  padding: 14px 24px;
-  border-top: 1px solid var(--ivory-dark);
-  display: flex; align-items: center; justify-content: space-between;
-  background: var(--ivory);
+.proj-title em { font-style: italic; color: var(--gold-light); }
+.proj-desc {
+  font-size: 14px; font-weight: 300;
+  color: var(--text-on-dark); line-height: 1.8;
+  max-width: 560px;
+  margin-bottom: 24px;
 }
-.proj-tech { font-size: 11px; color: #99A; }
-.proj-link {
+.proj-bq {
+  font-size: 13px; font-weight: 300;
+  color: var(--ivory-mid); line-height: 1.8;
+  padding: 16px 20px;
+  border-left: 2px solid var(--gold);
+  font-style: italic;
+  margin-bottom: 28px;
+  background: rgba(201,168,76,0.04);
+}
+.proj-actions { display: flex; align-items: center; gap: 20px; }
+.proj-link-primary {
   font-size: 12px; font-weight: 500;
-  color: var(--navy); text-decoration: none;
-  display: flex; align-items: center; gap: 6px;
+  letter-spacing: 0.08em;
+  color: var(--gold);
+  text-decoration: none;
+  display: flex; align-items: center; gap: 8px;
   transition: gap 0.2s, color 0.2s;
+  border-bottom: 1px solid rgba(201,168,76,0.3);
+  padding-bottom: 2px;
 }
-.proj-link:hover { color: var(--gold); gap: 10px; }
+.proj-link-primary:hover { gap: 14px; color: var(--gold-light); border-color: var(--gold); }
+.proj-stack { display: flex; flex-direction: column; gap: 16px; }
+.proj-stack-tier { display: flex; flex-direction: column; gap: 4px; }
+.proj-stack-label {
+  font-size: 9px; font-weight: 500;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--text-dim);
+}
+.proj-stack-value {
+  font-size: 13px; font-weight: 400;
+  color: var(--ivory-mid);
+}
+.proj-badge-wip {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 4px 12px; font-size: 9px; font-weight: 500;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  background: rgba(201,168,76,0.08);
+  border: 1px solid rgba(201,168,76,0.3);
+  color: var(--gold);
+  margin-bottom: 16px;
+  width: fit-content;
+}
+.proj-badge-wip::before {
+  content: '';
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--gold);
+  animation: pulse 1.8s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
 
 /* ── CERTS ── */
 .certs-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 40px; }
@@ -501,7 +578,9 @@ h2 em { font-style: italic; color: var(--gold-light); }
   .exp-item { grid-template-columns: 1fr; gap: 4px; }
   .exp-right { text-align: left; }
   .skills-grid { grid-template-columns: 1fr 1fr; }
-  .proj-grid { grid-template-columns: 1fr; }
+  .proj-item { grid-template-columns: 1fr; gap: 32px; }
+  .proj-item-left { padding-right: 0; }
+  .proj-item-right { padding-left: 0; border-left: none; border-top: 1px solid var(--navy-border); padding-top: 32px; }
   .certs-grid { grid-template-columns: 1fr; }
   .edu-grid { grid-template-columns: 1fr; }
   .contact-layout { grid-template-columns: 1fr; gap: 48px; }
@@ -543,12 +622,12 @@ h2 em { font-style: italic; color: var(--gold-light); }
 <body>
 
 <nav>
-  <div class="nav-mark">Lilit Manukyan</div>
+  <div class="nav-mark"></div>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
     <li><a href="#experience">Experience</a></li>
     <li><a href="#skills">Skills</a></li>
-    <li><a href="#projects">Projects</a></li>
     <li><a href="#certifications">Certifications</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
@@ -559,18 +638,18 @@ h2 em { font-style: italic; color: var(--gold-light); }
   <div class="hero-inner">
     <div class="hero-label reveal">
       <div class="hero-label-line"></div>
-      <span class="hero-label-text">Analytics Engineer · Data Integration Engineer</span>
+      <span class="hero-label-text">Analytics Engineer · 7 Years in Data & Analytics</span>
     </div>
     <h2 class="reveal rd1">
       Lilit<br>
       Manukyan
     </h2>
     <p class="hero-desc reveal rd2">
-      Turning complex datasets into trusted pipelines and actionable insights — at the intersection of engineering and analytics.
+      I build transformation layers from the business question backward — that's what makes the data assets actually usable.
     </p>
     <div class="hero-bottom reveal rd3">
-      <a href="#experience" class="btn-dusk btn-dusk-gold">View Experience</a>
-      <a href="#contact" class="btn-dusk btn-dusk-ghost">Get in Touch</a>
+      <a href="#projects" class="btn-dusk btn-dusk-gold">View My Work</a>
+      <a href="https://lilitmanukyan09.github.io/LILIT_MANUKYAN_CV.pdf" target="_blank" class="btn-dusk btn-dusk-ghost">Download CV</a>
       <div class="hero-meta-strip">
         <div class="hero-meta-item">
           <div class="hero-meta-l">Current</div>
@@ -578,12 +657,17 @@ h2 em { font-style: italic; color: var(--gold-light); }
         </div>
         <div class="hero-meta-item">
           <div class="hero-meta-l">Stack</div>
-          <div class="hero-meta-v">dbt · Snowflake · SQL · Python · Matillion · Power BI</div>
+          <div class="hero-meta-v">Snowflake · dbt · Matillion · SQL · Python</div>
+        </div>
+        <div class="hero-meta-item">
+          <div class="hero-meta-l">Certified</div>
+          <div class="hero-meta-v">SnowPro Core · AWS · Power BI</div>
         </div>
         <div class="hero-meta-item">
           <div class="hero-meta-l">Links</div>
           <div class="hero-meta-v">
-<a href="https://www.linkedin.com/in/lilit-manukyan/" target="_blank">LinkedIn</a>
+            <a href="https://www.linkedin.com/in/lilit-manukyan/" target="_blank">LinkedIn</a> ·
+            <a href="https://github.com/lilitmanukyan09" target="_blank">GitHub</a>
           </div>
         </div>
       </div>
@@ -595,39 +679,150 @@ h2 em { font-style: italic; color: var(--gold-light); }
 
 <!-- ABOUT -->
 <section class="sec-light" id="about">
-  <div class="eyebrow reveal"><div class="eyebrow-line"></div><span class="eyebrow-text">Who I am</span></div>
-  <h2 class="reveal">Where data <em>engineering</em><br>meets analytical thinking</h2>
-  <div class="about-grid" style="margin-top:56px;">
-    <div>
-      <p class="about-p reveal">I'm a <strong>Data Engineer & Analytics Engineer</strong> with extensive experience across data engineering, analytics, and business intelligence. At Philip Morris International, I design scalable ETL/ELT pipelines, build trusted data assets in Snowflake, and automate workflows that power strategic decision-making.</p>
-      <p class="about-p reveal">My background is unique: I bring both a <strong>deep engineering mindset</strong> — pipeline architecture, data quality frameworks, workflow automation — and a strong <strong>analytical lens</strong> from years of building BI dashboards and translating business requirements into data solutions.</p>
-    </div>
-    <div class="reveal">
-      <div class="info-panel">
-        <div class="info-panel-title">Languages</div>
-        <div class="lang-chips">
-          <span class="lang-chip native">English — Full Proficiency</span>
-          <span class="lang-chip">Russian — Working</span>
-          <span class="lang-chip">French — Working</span>
-          <span class="lang-chip">Armenian — Native</span>
-        </div>
-      </div>
+  <div class="eyebrow reveal"><div class="eyebrow-line"></div><span class="eyebrow-text">Background</span></div>
+  <h2 class="reveal">Built for the space between<br>data and <em>decisions</em></h2>
+  <div class="about-single" style="margin-top:56px; max-width: 720px;">
+    <p class="about-p reveal">My path from finance into analytics, and later a deliberate move toward engineering, was always driven by the same instinct — bringing data closer to the business and understanding what it actually needs to do.</p>
+    <p class="about-p reveal">I've spent years building the layer between raw source systems and the people who depend on them. What that work taught me is that technical execution and business understanding aren't separate skills — the best data infrastructure is built by someone who holds both at once. That's the kind of engineer I am, and the kind of environment I'm drawn to: one where I can own the full picture, not just my assigned slice of it.</p>
+    <div class="about-lang reveal">
+      <span class="about-lang-item"><strong>English</strong> — Full Proficiency</span>
+      <span class="about-lang-sep">·</span>
+      <span class="about-lang-item"><strong>Armenian</strong> — Native</span>
+      <span class="about-lang-sep">·</span>
+      <span class="about-lang-item"><strong>Russian</strong> — Working</span>
+      <span class="about-lang-sep">·</span>
+      <span class="about-lang-item"><strong>French</strong> — Working</span>
     </div>
   </div>
 </section>
 
 <div class="gold-divider"></div>
 
+<!-- PROJECTS -->
+<section class="sec-dark" id="projects">
+  <div class="eyebrow reveal"><div class="eyebrow-line"></div><span class="eyebrow-text">Portfolio</span></div>
+  <h2 class="reveal">Selected <em>Work</em></h2>
+  <p class="intro-text reveal">End-to-end projects spanning analytics engineering, pipeline design, and business intelligence.</p>
+  <div class="proj-list">
+
+    <!-- 01: Manufacturing Quality Platform -->
+    <div class="proj-item reveal">
+      <div class="proj-item-left">
+        <div class="proj-num">01</div>
+        <div class="proj-badge-wip">Phase 1 — Synthetic Data Generation</div>
+        <div class="proj-title">Manufacturing<br><em>Quality Platform</em></div>
+        <p class="proj-desc">An analytics engineering project modelling synthetic manufacturing process data to identify process parameter patterns that precede quality failure events. Built with production project structure — version-controlled dbt models, Snowflake warehouse, pinned dependencies, and documented data generation methodology.</p>
+        <div class="proj-bq">"For each recorded failure, what was the state of every process parameter in the 5, 10, and 20 operating cycles preceding it — and which parameters show the most consistent deviation from their product-variant baseline before failure occurs?"</div>
+        <div class="proj-actions">
+          <a href="https://github.com/lilitmanukyan09/manufacturing-quality-platform" target="_blank" class="proj-link-primary">View on GitHub →</a>
+        </div>
+      </div>
+      <div class="proj-item-right">
+        <div class="proj-stack">
+          <div class="proj-stack-tier">
+            <div class="proj-stack-label">Built</div>
+            <div class="proj-stack-value">2026 →</div>
+          </div>
+          <div class="proj-stack-tier">
+            <div class="proj-stack-label">Core Framework</div>
+            <div class="proj-stack-value" style="color: var(--gold);">dbt Core</div>
+          </div>
+          <div class="proj-stack-tier">
+            <div class="proj-stack-label">Data Generation</div>
+            <div class="proj-stack-value">Python</div>
+          </div>
+          <div class="proj-stack-tier">
+            <div class="proj-stack-label">Warehouse</div>
+            <div class="proj-stack-value">Snowflake</div>
+          </div>
+          <div class="proj-stack-tier">
+            <div class="proj-stack-label">Reporting</div>
+            <div class="proj-stack-value">Power BI</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 02: Canada Rental Data Warehouse -->
+    <div class="proj-item reveal">
+      <div class="proj-item-left">
+        <div class="proj-num">02</div>
+        <div class="proj-title">Canada Rental<br><em>Data Warehouse</em></div>
+        <p class="proj-desc">End-to-end data engineering project — scraping Canadian rental listings, designing a relational warehouse schema, automating data generation with AWS Lambda and EventBridge, and surfacing insights through advanced SQL queries including window functions and set operations.</p>
+        <div class="proj-actions">
+          <a href="https://github.com/lilitmanukyan09/canada_rental_data_warehouse" target="_blank" class="proj-link-primary">View on GitHub →</a>
+        </div>
+      </div>
+      <div class="proj-item-right">
+        <div class="proj-stack">
+          <div class="proj-stack-tier">
+            <div class="proj-stack-label">Built</div>
+            <div class="proj-stack-value">2022 · Study Project</div>
+          </div>
+          <div class="proj-stack-tier">
+            <div class="proj-stack-label">Ingestion</div>
+            <div class="proj-stack-value">Python · Selenium</div>
+          </div>
+          <div class="proj-stack-tier">
+            <div class="proj-stack-label">Storage</div>
+            <div class="proj-stack-value">PostgreSQL · Redshift</div>
+          </div>
+          <div class="proj-stack-tier">
+            <div class="proj-stack-label">Automation</div>
+            <div class="proj-stack-value">AWS Lambda · EventBridge</div>
+          </div>
+          <div class="proj-stack-tier">
+            <div class="proj-stack-label">Analytics</div>
+            <div class="proj-stack-value">SQL · Window Functions</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 03: Cryptocurrency Dashboard -->
+    <div class="proj-item reveal">
+      <div class="proj-item-left">
+        <div class="proj-num">03</div>
+        <div class="proj-title">Cryptocurrency<br><em>Analytics Dashboard</em></div>
+        <p class="proj-desc">Power BI dashboard exploring time-intelligence capabilities — hourly price and volume analysis across multiple cryptocurrency assets with dynamic period filtering (1d · 1w · 1m · 1y · All) and contextual KPI cards.</p>
+        <div class="proj-actions">
+          <a href="https://app.powerbi.com/view?r=eyJrIjoiMTYwYzAzNGMtMWM0My00MTBjLTlkZjItNTU0N2JiN2VjMTBlIiwidCI6IjE4MWE1MzExLWVmOWUtNGVjNi1hMmM0LTRhODQzNjhjYmFjYiIsImMiOjEwfQ%3D%3D" target="_blank" class="proj-link-primary">View Dashboard →</a>
+        </div>
+      </div>
+      <div class="proj-item-right">
+        <div class="proj-stack">
+          <div class="proj-stack-tier">
+            <div class="proj-stack-label">Built</div>
+            <div class="proj-stack-value">2022 · Study Project</div>
+          </div>
+          <div class="proj-stack-tier">
+            <div class="proj-stack-label">Logic</div>
+            <div class="proj-stack-value">DAX · Time Intelligence</div>
+          </div>
+          <div class="proj-stack-tier">
+            <div class="proj-stack-label">Reporting</div>
+            <div class="proj-stack-value">Power BI</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="gold-divider"></div>
+
 <!-- EXPERIENCE -->
-<section class="sec-dark" id="experience">
+<section class="sec-light" id="experience">
   <div class="eyebrow reveal"><div class="eyebrow-line"></div><span class="eyebrow-text">Career</span></div>
   <h2 class="reveal">Work <em>Experience</em></h2>
-  <p class="intro-text reveal">A track record across data engineering, analytics, and financial analysis.</p>
+  <p class="intro-text reveal">Seven years of deliberate moves — from financial analysis through business analytics into engineering, always staying close to where data meets decisions.</p>
   <div>
-    <div class="exp-item reveal">
+    <div class="exp-item exp-item-current reveal">
       <div>
-        <div class="exp-role">Data Integration Engineer</div>
+        <div class="exp-role exp-role-current">Data Integration Engineer</div>
         <div class="exp-co">Philip Morris International</div>
+        <div class="exp-narrative">Owning the transformation layer for manufacturing domain data — the bridge between enterprise source systems and the analytics products that depend on them, with data quality as a non-negotiable.</div>
       </div>
       <div class="exp-right">
         <div class="exp-period">Aug 2023 — Present</div>
@@ -638,6 +833,7 @@ h2 em { font-style: italic; color: var(--gold-light); }
       <div>
         <div class="exp-role">Data <em>Analyst</em></div>
         <div class="exp-co">Philip Morris International</div>
+        <div class="exp-narrative">The sole data practitioner embedded in a non-technical team — translating business needs into a reporting and data layer that fed directly into management workflows and strategic decisions.</div>
       </div>
       <div class="exp-right">
         <div class="exp-period">Jan 2022 — Aug 2023</div>
@@ -647,6 +843,7 @@ h2 em { font-style: italic; color: var(--gold-light); }
       <div>
         <div class="exp-role">Customer <em>Analytics</em> Specialist</div>
         <div class="exp-co">Digitain</div>
+        <div class="exp-narrative">Making sense of large-scale customer behavioral data — building segmentation models that gave CRM and marketing teams a clearer picture of who their customers actually were.</div>
       </div>
       <div class="exp-right">
         <div class="exp-period">Jan 2021 — Jan 2022</div>
@@ -654,27 +851,9 @@ h2 em { font-style: italic; color: var(--gold-light); }
     </div>
     <div class="exp-item reveal">
       <div>
-        <div class="exp-role">Freelance <em>Data Analyst</em></div>
-        <div class="exp-co">Upwork</div>
-      </div>
-      <div class="exp-right">
-        <div class="exp-period">Sep 2017 — Jan 2022</div>
-        <span class="exp-now" style="font-size:9px;">Freelance</span>
-      </div>
-    </div>
-    <div class="exp-item reveal">
-      <div>
-        <div class="exp-role">Bounty &amp; Community <em>Manager</em></div>
-        <div class="exp-co">AmaZix — Crypto &amp; FinTech</div>
-      </div>
-      <div class="exp-right">
-        <div class="exp-period">Nov 2017 — Dec 2018</div>
-      </div>
-    </div>
-    <div class="exp-item reveal">
-      <div>
         <div class="exp-role"><em>Investment</em> Analyst</div>
         <div class="exp-co">Converse Bank</div>
+        <div class="exp-narrative">Financial modelling and investment analysis for committee-level decisions.</div>
       </div>
       <div class="exp-right">
         <div class="exp-period">Oct 2018 — Oct 2020</div>
@@ -686,10 +865,10 @@ h2 em { font-style: italic; color: var(--gold-light); }
 <div class="gold-divider"></div>
 
 <!-- SKILLS -->
-<section class="sec-light" id="skills">
+<section class="sec-dark" id="skills">
   <div class="eyebrow reveal"><div class="eyebrow-line"></div><span class="eyebrow-text">Technical Expertise</span></div>
   <h2 class="reveal">Skills &amp; <em>Tools</em></h2>
-  <p class="intro-text reveal">A full-stack data toolkit — from pipeline engineering to executive reporting.</p>
+  <p class="intro-text reveal">Every layer of the stack — from pipeline architecture to the reporting surface.</p>
   <div class="skills-grid">
     <div class="skill-block reveal">
       <div class="skill-block-name">Pipeline & ETL</div>
@@ -701,7 +880,7 @@ h2 em { font-style: italic; color: var(--gold-light); }
     <div class="skill-block reveal">
       <div class="skill-block-name">Data Warehouse</div>
       <div>
-        <span class="stag hi">Snowflake</span><span class="stag">SnowPro Certified</span>
+        <span class="stag hi">Snowflake</span>
         <span class="stag">Data Modeling</span><span class="stag">Data Quality</span>
       </div>
     </div>
@@ -709,111 +888,22 @@ h2 em { font-style: italic; color: var(--gold-light); }
       <div class="skill-block-name">Programming</div>
       <div>
         <span class="stag hi">SQL (Advanced)</span><span class="stag hi">Python</span>
-        <span class="stag">Pandas</span><span class="stag">NumPy</span><span class="stag">Web Scraping</span>
+        <span class="stag">Pandas</span><span class="stag">NumPy</span>
       </div>
     </div>
     <div class="skill-block reveal">
       <div class="skill-block-name">Cloud & DevOps</div>
       <div>
-        <span class="stag hi">AWS</span><span class="stag">Cloud Practitioner</span>
-        <span class="stag">Git / GitHub</span><span class="stag">Version Control</span>
+        <span class="stag hi">AWS</span>
+        <span class="stag">S3</span><span class="stag">Lambda</span><span class="stag">EventBridge</span>
+        <span class="stag">Git / GitHub</span>
       </div>
     </div>
     <div class="skill-block reveal">
       <div class="skill-block-name">BI & Visualization</div>
       <div>
-        <span class="stag hi">Power BI</span><span class="stag hi">Excel</span>
-        <span class="stag">DAX</span><span class="stag">Data Modeling</span><span class="stag">Executive Reporting</span>
-      </div>
-    </div>
-    <div class="skill-block reveal">
-      <div class="skill-block-name">Analytics & ML</div>
-      <div>
-        <span class="stag">Segmentation</span><span class="stag">Anomaly Detection</span>
-        <span class="stag">Classification</span><span class="stag">Regression</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="gold-divider"></div>
-
-<!-- PROJECTS — light section -->
-<section class="sec-light" id="projects">
-  <div class="eyebrow reveal"><div class="eyebrow-line"></div><span class="eyebrow-text">Portfolio</span></div>
-  <h2 class="reveal">Featured <em>Projects</em></h2>
-  <p class="intro-text reveal">Hands-on work spanning BI dashboards, data engineering, Python and machine learning.</p>
-  <div class="proj-grid">
-    <div class="proj-card reveal">
-      <div class="proj-top-bar"></div>
-      <div class="proj-body">
-        <div class="proj-cat">Power BI · Business Intelligence</div>
-        <div class="proj-title">Sales Analytics Dashboard</div>
-        <div class="proj-desc">Interactive dashboard with bookmarks, custom visuals, and a hidden filter pane. Includes title and problem statement pages.</div>
-      </div>
-      <div class="proj-footer">
-        <span class="proj-tech">Power BI · DAX · Data Modeling</span>
-        <a href="https://app.powerbi.com/view?r=eyJrIjoiZTEzZjViNDktODIwNS00MWExLWI4ZWEtNjY5Yzk0YzBkZmY0IiwidCI6IjE4MWE1MzExLWVmOWUtNGVjNi1hMmM0LTRhODQzNjhjYmFjYiIsImMiOjEwfQ%3D%3D" target="_blank" class="proj-link">View →</a>
-      </div>
-    </div>
-    <div class="proj-card reveal">
-      <div class="proj-top-bar"></div>
-      <div class="proj-body">
-        <div class="proj-cat">Power BI · Financial Analytics</div>
-        <div class="proj-title">Cryptocurrency Analytics Dashboard</div>
-        <div class="proj-desc">Advanced DAX showcasing crypto price changes across time periods with complex time-intelligence calculations.</div>
-      </div>
-      <div class="proj-footer">
-        <span class="proj-tech">Power BI · Advanced DAX</span>
-        <a href="https://app.powerbi.com/view?r=eyJrIjoiMTYwYzAzNGMtMWM0My00MTBjLTlkZjItNTU0N2JiN2VjMTBlIiwidCI6IjE4MWE1MzExLWVmOWUtNGVjNi1hMmM0LTRhODQzNjhjYmFjYiIsImMiOjEwfQ%3D%3D" target="_blank" class="proj-link">View →</a>
-      </div>
-    </div>
-    <div class="proj-card reveal">
-      <div class="proj-top-bar"></div>
-      <div class="proj-body">
-        <div class="proj-cat">Data Engineering · Python</div>
-        <div class="proj-title">Rental Data Warehouse</div>
-        <div class="proj-desc">End-to-end: web scraping a rental site, warehouse schema design, and analytical queries for business insights.</div>
-      </div>
-      <div class="proj-footer">
-        <span class="proj-tech">Python · SQL · Selenium</span>
-        <a href="https://github.com/lilitmanukyan09/aca_rental_warehouse" target="_blank" class="proj-link">View →</a>
-      </div>
-    </div>
-    <div class="proj-card reveal">
-      <div class="proj-top-bar"></div>
-      <div class="proj-body">
-        <div class="proj-cat">Python · Web Scraping</div>
-        <div class="proj-title">Walmart Store Locator Scraper</div>
-        <div class="proj-desc">Extracting Walmart store addresses across Canada using Selenium and Requests for geographic analysis.</div>
-      </div>
-      <div class="proj-footer">
-        <span class="proj-tech">Python · Selenium · Requests</span>
-        <a href="https://github.com/lilitmanukyan09/Web_scraping/blob/main/Walmart_scraping.py" target="_blank" class="proj-link">View →</a>
-      </div>
-    </div>
-    <div class="proj-card reveal">
-      <div class="proj-top-bar"></div>
-      <div class="proj-body">
-        <div class="proj-cat">Machine Learning · Python</div>
-        <div class="proj-title">Parkinson's Disease Prediction</div>
-        <div class="proj-desc">KNN, Decision Tree, Logistic Regression and Random Forest compared — Random Forest achieved the highest ROC-AUC, Accuracy and F1.</div>
-      </div>
-      <div class="proj-footer">
-        <span class="proj-tech">Python · Scikit-learn · Random Forest</span>
-        <a href="https://github.com/lilitmanukyan09/Parkinsons-prediction/tree/new/Parkinson_project" target="_blank" class="proj-link">View →</a>
-      </div>
-    </div>
-    <div class="proj-card reveal">
-      <div class="proj-top-bar"></div>
-      <div class="proj-body">
-        <div class="proj-cat">SQL · Data Analysis</div>
-        <div class="proj-title">SQL Analytics & Schema Design</div>
-        <div class="proj-desc">Warehouse design patterns and advanced analytical queries as part of the rental data warehouse project.</div>
-      </div>
-      <div class="proj-footer">
-        <span class="proj-tech">SQL · Schema Design</span>
-        <a href="https://github.com/lilitmanukyan09/aca_rental_warehouse/blob/main/analytical_queries.sql" target="_blank" class="proj-link">View →</a>
+        <span class="stag hi">Power BI</span>
+        <span class="stag">DAX</span><span class="stag">Data Modeling</span>
       </div>
     </div>
   </div>
@@ -825,16 +915,16 @@ h2 em { font-style: italic; color: var(--gold-light); }
 <section class="sec-light" id="certifications">
   <div class="eyebrow reveal"><div class="eyebrow-line"></div><span class="eyebrow-text">Credentials</span></div>
   <h2 class="reveal">Certifications &amp; <em>Education</em></h2>
-  <p class="intro-text reveal">Industry certifications backed by strong academic foundations.</p>
+  <p class="intro-text reveal">Verified credentials across the full stack.</p>
   <div class="certs-grid">
-    <a href="https://achieve.snowflake.com/aee36f5b-34ca-42da-b7f6-54fdeeaeed25" target="_blank" class="cert-card reveal">
-      <div class="cert-logo"><svg viewBox="0 0 32 32" style="width:22px;height:22px;"><path d="M16 4v24M16 4l-4 4M16 4l4 4M16 28l-4-4M16 28l4-4M4.8 10l22.4 12M4.8 10l5 1M4.8 10l1 5M27.2 22l-5-1M27.2 22l-1-5M4.8 22l22.4-12M4.8 22l1-5M4.8 22l5-1M27.2 10l-1 5M27.2 10l-5 1" stroke="#29B5E8" stroke-width="2" stroke-linecap="round"/></svg></div>
-      <div><div class="cert-n">SnowPro Core Certification</div><div class="cert-o">Snowflake — April 2024</div></div>
-      <div class="cert-arr">→</div>
-    </a>
     <a href="https://www.credly.com/badges/5251e095-91a7-4ab6-97c8-dc041b715de8/linked_in" target="_blank" class="cert-card reveal">
       <div class="cert-logo" style="background:#232F3E;border:none;"><svg viewBox="0 0 48 24" style="width:36px;height:18px;"><text x="2" y="18" font-family="Arial Black,sans-serif" font-weight="900" font-size="16" fill="#FF9900">AWS</text></svg></div>
       <div><div class="cert-n">AWS Cloud Practitioner</div><div class="cert-o">Amazon Web Services — August 2024</div></div>
+      <div class="cert-arr">→</div>
+    </a>
+    <a href="https://achieve.snowflake.com/aee36f5b-34ca-42da-b7f6-54fdeeaeed25" target="_blank" class="cert-card reveal">
+      <div class="cert-logo"><svg viewBox="0 0 32 32" style="width:22px;height:22px;"><path d="M16 4v24M16 4l-4 4M16 4l4 4M16 28l-4-4M16 28l4-4M4.8 10l22.4 12M4.8 10l5 1M4.8 10l1 5M27.2 22l-5-1M27.2 22l-1-5M4.8 22l22.4-12M4.8 22l1-5M4.8 22l5-1M27.2 10l-1 5M27.2 10l-5 1" stroke="#29B5E8" stroke-width="2" stroke-linecap="round"/></svg></div>
+      <div><div class="cert-n">SnowPro Core Certification</div><div class="cert-o">Snowflake — April 2024</div></div>
       <div class="cert-arr">→</div>
     </a>
     <a href="https://www.credly.com/badges/057d939d-9281-440b-a14f-b7e516f6867e" target="_blank" class="cert-card reveal">
@@ -842,6 +932,10 @@ h2 em { font-style: italic; color: var(--gold-light); }
       <div><div class="cert-n">Power BI Data Analyst Associate</div><div class="cert-o">Microsoft — April 2022</div></div>
       <div class="cert-arr">→</div>
     </a>
+    <div class="cert-card reveal" style="cursor:default;">
+      <div class="cert-logo" style="background:#E63946;border:none;"><svg viewBox="0 0 32 24" style="width:28px;height:20px;"><text x="2" y="17" font-family="Arial,sans-serif" font-weight="700" font-size="11" fill="white">ACA</text></svg></div>
+      <div><div class="cert-n">Data Engineering Program</div><div class="cert-o">Armenian Code Academy — January 2022</div></div>
+    </div>
     <a href="https://www.datacamp.com/statement-of-accomplishment/track/e3849e6a379f4954626199c94c8e43104d5a43c9" target="_blank" class="cert-card reveal">
       <div class="cert-logo" style="background:#03EF62;border:none;"><svg viewBox="0 0 32 32" style="width:20px;height:20px;"><path d="M10 6l14 10-14 10V6z" fill="#05192D"/><rect x="7" y="23" width="6" height="3" rx="1.5" fill="#05192D"/></svg></div>
       <div><div class="cert-n">Data Scientist with Python</div><div class="cert-o">DataCamp — April 2021</div></div>
@@ -852,10 +946,6 @@ h2 em { font-style: italic; color: var(--gold-light); }
       <div><div class="cert-n">Financial Modeling & Valuation Analyst</div><div class="cert-o">Corporate Finance Institute — April 2020</div></div>
       <div class="cert-arr">→</div>
     </a>
-    <div class="cert-card reveal" style="cursor:default;">
-      <div class="cert-logo" style="background:#E63946;border:none;"><svg viewBox="0 0 32 24" style="width:28px;height:20px;"><text x="2" y="17" font-family="Arial,sans-serif" font-weight="700" font-size="11" fill="white">ACA</text></svg></div>
-      <div><div class="cert-n">Data Engineering Program</div><div class="cert-o">Armenian Code Academy — January 2022</div></div>
-    </div>
   </div>
   <div class="edu-grid">
     <div class="edu-card reveal">
@@ -875,42 +965,6 @@ h2 em { font-style: italic; color: var(--gold-light); }
 
 <div class="gold-divider"></div>
 
-
-<!-- INDUSTRIES -->
-<section class="sec-light" id="industries">
-  <div class="eyebrow reveal"><div class="eyebrow-line"></div><span class="eyebrow-text">Domain Experience</span></div>
-  <h2 class="reveal">Industries &amp; <em>Domains</em></h2>
-  <p class="intro-text reveal">Hands-on experience delivering data solutions across diverse and demanding industries.</p>
-  <div class="industries-grid">
-    <div class="industry-card reveal">
-      <div class="industry-icon">🏦</div>
-      <div class="industry-name">Banking &amp; Finance</div>
-      <div class="industry-detail">Investment analysis, financial modeling, valuation</div>
-    </div>
-    <div class="industry-card reveal">
-      <div class="industry-icon">🏭</div>
-      <div class="industry-name">Manufacturing</div>
-      <div class="industry-detail">ETL pipelines, analytics &amp; R&amp;D data infrastructure — Philip Morris International</div>
-    </div>
-    <div class="industry-card reveal">
-      <div class="industry-icon">₿</div>
-      <div class="industry-name">Crypto &amp; FinTech</div>
-      <div class="industry-detail">Analytics dashboards &amp; community management — AmaZix</div>
-    </div>
-    <div class="industry-card reveal">
-      <div class="industry-icon">🎮</div>
-      <div class="industry-name">Gaming</div>
-      <div class="industry-detail">CRM analytics &amp; behavioral segmentation — Digitain</div>
-    </div>
-    <div class="industry-card reveal">
-      <div class="industry-icon">🔬</div>
-      <div class="industry-name">R&amp;D</div>
-      <div class="industry-detail">Analytical &amp; engineering support for R&amp;D at Philip Morris International</div>
-    </div>
-  </div>
-</section>
-
-<div class="gold-divider"></div>
 <!-- CONTACT -->
 <section class="sec-mid" id="contact">
   <div class="contact-layout">
@@ -918,7 +972,7 @@ h2 em { font-style: italic; color: var(--gold-light); }
       Let's<br><em>connect.</em>
     </div>
     <div>
-      <p class="contact-sub reveal">Always happy to connect with fellow data professionals, discuss interesting problems, or exchange ideas about engineering and analytics. Feel free to reach out.</p>
+      <p class="contact-sub reveal">Let's talk data.</p>
       <div class="c-btns">
         <a href="mailto:lilitmanukyan09@gmail.com" class="c-btn reveal">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
@@ -929,11 +983,6 @@ h2 em { font-style: italic; color: var(--gold-light); }
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
           <span class="c-btn-label">LinkedIn</span>
           <span class="c-btn-detail">lilit-manukyan</span>
-        </a>
-        <a href="https://github.com/lilitmanukyan09" target="_blank" class="c-btn reveal">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
-          <span class="c-btn-label">GitHub</span>
-          <span class="c-btn-detail">lilitmanukyan09</span>
         </a>
       </div>
     </div>
